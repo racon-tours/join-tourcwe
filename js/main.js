@@ -1,4 +1,4 @@
-// TourCWE — come.tourcwe.com — Main JS
+// TourCWE — tourcwe.com — Main JS
 
 document.addEventListener('DOMContentLoaded', () => {
 

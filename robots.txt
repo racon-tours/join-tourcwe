@@ -1,7 +1,7 @@
-# https://come.tourcwe.com/robots.txt
+# https://tourcwe.com/robots.txt
 # TourCWE — direct booking site
 
 User-agent: *
 Allow: /
 
-Sitemap: https://come.tourcwe.com/sitemap.xml
+Sitemap: https://tourcwe.com/sitemap.xml
