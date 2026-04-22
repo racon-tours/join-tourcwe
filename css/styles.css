@@ -1001,3 +1001,13 @@ textarea:focus-visible,
 }
 /* Remove outline for mouse users only */
 :focus:not(:focus-visible) { outline: none; }
+
+/* Gift card page */
+.hero--short .hero__bg { min-height: 320px; }
+.hero--short .hero__content { padding: 4rem 0 3rem; }
+.container--narrow { max-width: 760px; margin: 0 auto; }
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.info-card { background: var(--white); border-radius: 8px; padding: 1.4rem 1.5rem; border: 1px solid rgba(0,0,0,.07); }
+.info-card h3 { font-family: var(--font-brand); font-size: 1rem; font-weight: 700; margin-bottom: .5rem; color: var(--dark); }
+.info-card p { font-size: .92rem; margin: 0; color: #444; }
+.section--cream { background: var(--cream); }
