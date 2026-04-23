@@ -82,48 +82,42 @@
       "reviewCount": "38",
       "bestRating": "5",
       "worstRating": "1"
+    }
+  }
+  </script>
+
+  <!-- Schema: Product (parallel block for star-snippet eligibility).
+       Google policy: inline review[] on a business's own page is ineligible
+       for Review rich results. aggregateRating on Product is the accepted
+       pattern for star snippets. Do not re-add review[] here. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "A Taste of Two Cities: St. Louis Food + History Walking Tour",
+    "description": "Award-winning 3-hour food and history walking tour of the Central West End in St. Louis, Missouri. Sample uniquely St. Louis dishes \u2014 toasted ravioli, gooey butter cake, St. Louis-style pizza with Provel \u2014 while hearing the real story of the neighborhood St. Louis built at the peak of the Gilded Age.",
+    "url": "https://tourcwe.com/tour/",
+    "image": "https://tourcwe.com/images/guide-at-lamp.jpg",
+    "brand": {
+      "@type": "Brand",
+      "name": "TourCWE"
     },
-    "review": [
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Verified Viator Guest"
-        },
-        "reviewBody": "Mike is an amazing tour guide! He had so much to tell about STL history and his passion came through! We had so much yummy food to eat and a plan for where else we wanted to visit. Well worth the ticket."
-      },
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Verified Viator Guest"
-        },
-        "reviewBody": "CWE Tours did a wonderful job choosing tour topics, stops, and selecting the food. Making it one of the better organized tours we've been on \u2014 a great mix of culture, history, flavor, and fun."
-      },
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Verified Viator Guest"
-        },
-        "reviewBody": "Mike did a great job sharing his passion and history for St. Louis. Highly recommend this tour when in town! Great food and great company. A unique way to experience this city."
-      }
-    ]
+    "category": "Travel tour",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "38",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "129",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://tourcwe.com/tour/#book",
+      "priceValidUntil": "2026-12-31"
+    }
   }
   </script>
 
