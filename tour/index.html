@@ -70,11 +70,63 @@
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock",
       "url": "https://tourcwe.com/tour/#book"
-    }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "38",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Verified Viator Guest"
+        },
+        "reviewBody": "Mike is an amazing tour guide! He had so much to tell about STL history and his passion came through! We had so much yummy food to eat and a plan for where else we wanted to visit. Well worth the ticket."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Verified Viator Guest"
+        },
+        "reviewBody": "CWE Tours did a wonderful job choosing tour topics, stops, and selecting the food. Making it one of the better organized tours we've been on \u2014 a great mix of culture, history, flavor, and fun."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Verified Viator Guest"
+        },
+        "reviewBody": "Mike did a great job sharing his passion and history for St. Louis. Highly recommend this tour when in town! Great food and great company. A unique way to experience this city."
+      }
+    ]
   }
   </script>
 
   <link rel="stylesheet" href="/css/styles.css?v=2026-04-21b">
+
+  <!-- Perf: warm the connection to Bokun's S3 bucket (used for hero background + photo strip) -->
+  <link rel="preconnect" href="https://bokun.s3.amazonaws.com" crossorigin>
+  <link rel="dns-prefetch" href="https://bokun.s3.amazonaws.com">
 </head>
 <body>
 <a href="#main-content" class="skip-nav">Skip to main content</a>
@@ -220,11 +272,14 @@
         <!-- Photo Strip -->
         <div class="photo-strip" aria-label="Tour photos">
           <img src="https://bokun.s3.amazonaws.com/15a46711-274c-4d02-aa66-612cefc8b916.jpg"
-               alt="Mike Nichols pointing out the iconic Maryland Plaza candelabra lamp on the Taste of Two Cities tour" loading="lazy" class="wide">
+               alt="Tour guide pointing out the Maryland Plaza candelabra lamp on the Central West End food tour in St. Louis"
+               width="720" height="480" loading="lazy" class="wide">
           <img src="https://bokun.s3.amazonaws.com/7a4fee34-2d2f-436d-bbbb-b4fc323fda33.jpg"
-               alt="Local food tasting on the TourCWE walking tour, St. Louis" loading="lazy">
+               alt="Local food tasting on the Central West End walking tour in St. Louis"
+               width="720" height="480" loading="lazy">
           <img src="/images/tour-group-chess-hall.jpg"
-               alt="Tour group at the World Chess Hall of Fame in the Central West End, St. Louis" loading="lazy">
+               alt="Tour group at the World Chess Hall of Fame in the Central West End, St. Louis"
+               width="2048" height="1365" loading="lazy">
         </div>
 
         <!-- FAQ -->

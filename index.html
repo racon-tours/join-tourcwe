@@ -54,6 +54,10 @@
   </script>
 
   <link rel="stylesheet" href="/css/styles.css?v=2026-04-21b">
+
+  <!-- Perf: warm the connection to Bokun's S3 bucket (used for content card images) -->
+  <link rel="preconnect" href="https://bokun.s3.amazonaws.com" crossorigin>
+  <link rel="dns-prefetch" href="https://bokun.s3.amazonaws.com">
 </head>
 <body>
 <a href="#main-content" class="skip-nav">Skip to main content</a>
@@ -135,7 +139,7 @@
         <div class="card__img">
           <img src="https://bokun.s3.amazonaws.com/27d0bec4-c28d-4eaa-a103-44a100d38e09.jpg"
                alt="A spread of iconic St. Louis bites on the Taste of Two Cities food tour"
-               loading="lazy">
+               width="720" height="480" loading="lazy">
           <span class="card__badge">The Food</span>
         </div>
         <div class="card__body">
@@ -152,7 +156,7 @@
         <div class="card__img">
           <img src="https://bokun.s3.amazonaws.com/15a46711-274c-4d02-aa66-612cefc8b916.jpg"
                alt="Central West End streetscape, the neighborhood St. Louis built at the peak of the Gilded Age"
-               loading="lazy">
+               width="720" height="480" loading="lazy">
           <span class="card__badge">The Story</span>
         </div>
         <div class="card__body">
@@ -169,7 +173,7 @@
         <div class="card__img">
           <img src="/images/tour-group-chess-hall.jpg"
                alt="Guide leading a Central West End walking tour in St. Louis"
-               loading="lazy">
+               width="2048" height="1365" loading="lazy">
           <span class="card__badge" style="background:var(--sage);color:white;">Who It's For</span>
         </div>
         <div class="card__body">

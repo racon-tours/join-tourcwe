@@ -20,24 +20,6 @@
   </url>
 
   <url>
-    <loc>https://tourcwe.com/picnics/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://tourcwe.com/picnics/art-hill/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://tourcwe.com/picnics/muny/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
     <loc>https://tourcwe.com/blog/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

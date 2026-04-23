@@ -11,8 +11,72 @@
   to = "/tour/"
   status = 301
 
+# ---------------------------------------------------------------------------
+# Legacy URLs from the pre-rebuild site (still indexed by Google, now 404ing).
+# Each 301 reclaims the ranking authority by sending it to today's equivalent.
+# Added 2026-04-22 as part of SEO audit quick wins.
+# ---------------------------------------------------------------------------
+
+[[redirects]]
+  from = "/contact"
+  to = "/tour/#book"
+  status = 301
+
+[[redirects]]
+  from = "/dressels"
+  to = "/blog/dressels-public-house/"
+  status = 301
+
+[[redirects]]
+  from = "/gramophone"
+  to = "/blog/gramophone/"
+  status = 301
+
+[[redirects]]
+  from = "/straubs"
+  to = "/blog/straubs-market/"
+  status = 301
+
+[[redirects]]
+  from = "/havanas"
+  to = "/blog/havanas-cuisine/"
+  status = 301
+
+[[redirects]]
+  from = "/omg"
+  to = "/blog/omg-in-the-cwe/"
+  status = 301
+
+# ---------------------------------------------------------------------------
 # Forest Park Picnics lives at its own domain now.
 # force=true is required because /picnics/*/index.html still exist in the repo.
+# Specific product rules MUST come before the catch-all.
+# ---------------------------------------------------------------------------
+
+[[redirects]]
+  from = "/picnics/art-hill"
+  to = "https://forestparkpicnics.com/art-hill-picnic-st-louis"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/picnics/art-hill/*"
+  to = "https://forestparkpicnics.com/art-hill-picnic-st-louis"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/picnics/muny"
+  to = "https://forestparkpicnics.com/pagoda-lake-picnic-st-louis"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/picnics/muny/*"
+  to = "https://forestparkpicnics.com/pagoda-lake-picnic-st-louis"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/picnic"
   to = "https://forestparkpicnics.com/"
