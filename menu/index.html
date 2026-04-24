@@ -187,17 +187,25 @@
 </div>
 
 <script>
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT1MiNc2fqE30aVjm64aNXOEiZ_KFIFYlTvbWcCW_OVJvc_LKlBfEdEvNe3hTqiMW79QLjfM3qS2Fzu/pub?output=csv';
 
-// ── Partner metadata (fallback values) ────────────────────────────────────────
-// Sheet columns E (logo) and F (url) override `logo_url` and `website` here.
-// Tagline, instagram, googleReviews, initials, and badgeColor stay hardcoded
-// since they change rarely. Add new partners by extending this object.
+const PUB_BASE = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT1MiNc2fqE30aVjm64aNXOEiZ_KFIFYlTvbWcCW_OVJvc_LKlBfEdEvNe3hTqiMW79QLjfM3qS2Fzu/pub?output=csv';
+// Today's Menu is always gid=0. Partners / Menu Items are null until those
+// tabs exist; code gracefully falls back to the hardcoded PARTNERS const and
+// to legacy C=dish/D=description columns in the menu tab.
+const GID_MENU     = 0;
+const GID_PARTNERS = null; // TODO: set after Partners tab created
+const GID_ITEMS    = null; // TODO: set after Menu Items tab created
+
+const MENU_CSV     = PUB_BASE + '&gid=' + GID_MENU;
+const PARTNERS_CSV = GID_PARTNERS !== null ? PUB_BASE + '&gid=' + GID_PARTNERS : null;
+const ITEMS_CSV    = GID_ITEMS    !== null ? PUB_BASE + '&gid=' + GID_ITEMS    : null;
+
+// Hardcoded partner fallbacks — used when the Partners tab is unavailable or
+// doesn't list the partner. Sheet data always wins when present.
 const PARTNERS = {
   "Straub's Market": {
     tagline: "The neighborhood grocer St. Louis has trusted since 1901.",
     website: "https://www.straubs.com",
-    websiteLabel: "straubs.com",
     instagram: "https://www.instagram.com/straubsmarket/",
     instagramHandle: "@straubsmarket",
     googleReviews: "https://maps.google.com/?q=Straub%27s+Fine+Grocers+302+N+Kingshighway+Blvd+St+Louis+MO+63108",
@@ -208,7 +216,6 @@ const PARTNERS = {
   "Havana's Cuisine": {
     tagline: "Authentic Cuban cuisine, family-owned. Bread shipped from Tampa's La Segunda Bakery since 1915.",
     website: "https://www.havanascuisine.com",
-    websiteLabel: "havanascuisine.com",
     instagram: "https://www.instagram.com/havanas.cuisine/",
     instagramHandle: "@havanas.cuisine",
     googleReviews: "https://maps.google.com/?q=Havana%27s+Cuisine+12+S+Euclid+Ave+St+Louis+MO+63108",
@@ -219,7 +226,6 @@ const PARTNERS = {
   "The Gramophone": {
     tagline: "Started as a music venue in 2008. The sandwiches won. 25,000 fans on Instagram agree.",
     website: "https://www.gramophonestl.com",
-    websiteLabel: "gramophonestl.com",
     instagram: "https://www.instagram.com/thegramophone/",
     instagramHandle: "@thegramophone",
     googleReviews: "https://maps.google.com/?q=The+Gramophone+4243+Manchester+Ave+St+Louis+MO+63110",
@@ -228,9 +234,8 @@ const PARTNERS = {
     badgeColor: "#7d4f14"
   },
   "Serendipity": {
-    tagline: "Premium small-batch ice cream from The Grove. STL-inspired flavors\u2014gooey butter, red hot riplets, and more.",
+    tagline: "Premium small-batch ice cream from The Grove. STL-inspired flavors—gooey butter, red hot riplets, and more.",
     website: "",
-    websiteLabel: "",
     instagram: "https://www.instagram.com/serendipityicecream/",
     instagramHandle: "@serendipityicecream",
     googleReviews: "https://maps.google.com/?q=Serendipity+Homemade+Ice+Cream+4400+Manchester+Ave+St+Louis+MO+63110",
@@ -263,38 +268,86 @@ function parseCSV(text) {
   return rows;
 }
 
-// Builds menu data + a sheetOverrides map keyed by restaurant name.
-// Sheet columns: A=type, B=restaurant, C=dish, D=description, E=logo, F=website, G=storefront, H=blog_url
-// sheetOverrides[name] = { logo_url?, website?, storefront_url?, blog_url? } — sheet wins over PARTNERS.
-function buildMenuData(rows) {
+// Partners tab → name-keyed map of metadata.
+// Columns (1-indexed): A=name, B=logo_url, C=website, D=storefront_url,
+// E=blog_url, F=instagram, G=instagram_handle, H=tagline, I=google_reviews,
+// J=initials, K=badge_color.
+function buildPartnersMap(rows) {
+  const map = {};
+  if (!rows || rows.length < 2) return map;
+  for (let i = 1; i < rows.length; i++) {
+    const r = rows[i];
+    const name = (r[0] || '').trim();
+    if (!name) continue;
+    map[name] = {
+      logo_url:        (r[1]  || '').trim(),
+      website:         (r[2]  || '').trim(),
+      storefront_url:  (r[3]  || '').trim(),
+      blog_url:        (r[4]  || '').trim(),
+      instagram:       (r[5]  || '').trim(),
+      instagramHandle: (r[6]  || '').trim(),
+      tagline:         (r[7]  || '').trim(),
+      googleReviews:   (r[8]  || '').trim(),
+      initials:        (r[9]  || '').trim(),
+      badgeColor:      (r[10] || '').trim()
+    };
+  }
+  return map;
+}
+
+// Menu Items tab → keyed by "Restaurant::item-id".
+// Columns: A=restaurant, B=item_id, C=dish, D=description, E=notes.
+function buildMenuItemsMap(rows) {
+  const map = {};
+  if (!rows || rows.length < 2) return map;
+  for (let i = 1; i < rows.length; i++) {
+    const r = rows[i];
+    const restaurant = (r[0] || '').trim();
+    const itemId     = (r[1] || '').trim();
+    if (!restaurant || !itemId) continue;
+    map[restaurant + '::' + itemId] = {
+      dish:        (r[2] || '').trim(),
+      description: (r[3] || '').trim()
+    };
+  }
+  return map;
+}
+
+// Builds menu data. Tries item_id lookup first; falls back to legacy columns
+// C=dish, D=description so old-format rows keep working.
+//   New menu columns:    A=picnic  B=restaurant  C=item_id  D=dish_override  E=description_override
+//   Legacy menu columns: A=type    B=restaurant  C=dish     D=description
+function buildMenuData(rows, menuItems) {
   let returnNote = '', contact = '';
   const artHill = [], muny = [];
-  const sheetOverrides = {};
   for (const row of rows) {
     const type = (row[0] || '').trim().toUpperCase();
     if (!type || type.startsWith('--') || type === 'PICNIC') continue;
-    if (type === 'RETURN') { returnNote = row[1] || ''; continue; }
-    if (type === 'CONTACT') { contact = row[1] || ''; continue; }
-    const item = { restaurant: row[1] || '', dish: row[2] || '', note: row[3] || '' };
-    if (!item.restaurant || !item.dish) continue;
+    if (type === 'RETURN')  { returnNote = row[1] || ''; continue; }
+    if (type === 'CONTACT') { contact    = row[1] || ''; continue; }
 
-    // Capture sheet-driven overrides per restaurant (last non-empty wins)
-    const logo = (row[4] || '').trim();
-    const url = (row[5] || '').trim();
-    const storefront = (row[6] || '').trim();
-    const blog = (row[7] || '').trim();
-    if (logo || url || storefront || blog) {
-      if (!sheetOverrides[item.restaurant]) sheetOverrides[item.restaurant] = {};
-      if (logo) sheetOverrides[item.restaurant].logo_url = logo;
-      if (url) sheetOverrides[item.restaurant].website = url;
-      if (storefront) sheetOverrides[item.restaurant].storefront_url = storefront;
-      if (blog) sheetOverrides[item.restaurant].blog_url = blog;
+    const restaurant = (row[1] || '').trim();
+    const cVal       = (row[2] || '').trim();
+    const dVal       = (row[3] || '').trim();
+    const eVal       = (row[4] || '').trim();
+    if (!restaurant) continue;
+
+    const lookup = cVal && menuItems ? menuItems[restaurant + '::' + cVal] : null;
+    let dish, note;
+    if (lookup) {
+      dish = dVal || lookup.dish;
+      note = eVal || lookup.description;
+    } else {
+      dish = cVal;
+      note = dVal;
     }
+    if (!dish) continue;
 
+    const item = { restaurant, dish, note };
     if (type === 'ART_HILL') artHill.push(item);
-    if (type === 'MUNY') muny.push(item);
+    if (type === 'MUNY')     muny.push(item);
   }
-  return { returnNote, contact, artHill, muny, sheetOverrides };
+  return { returnNote, contact, artHill, muny };
 }
 
 function groupByRestaurant(items) {
@@ -311,28 +364,29 @@ function esc(s) {
 }
 
 // ── Render a partner card ─────────────────────────────────────────────────────
-function renderPartnerCard(restaurantName, dishes, overrides) {
-  const base = PARTNERS[restaurantName] || {};
-  // Sheet overrides win over hardcoded fallbacks
-  const p = { ...base, ...(overrides || {}) };
+function renderPartnerCard(restaurantName, dishes, partners) {
+  const base  = PARTNERS[restaurantName] || {};
+  const sheet = (partners && partners[restaurantName]) || {};
+  // Strip empty strings from sheet data so they don't overwrite populated base fields
+  const sheetClean = {};
+  for (const k in sheet) { if (sheet[k]) sheetClean[k] = sheet[k]; }
+  const p = { ...base, ...sheetClean };
   const color = p.badgeColor || '#628395';
 
-  // Logo: real image (white card bg) or styled badge with initials
   const hasImage = !!p.logo_url;
   const logoStyle = hasImage ? '' : `background:${color}`;
   const logoClass = hasImage ? 'partner-logo has-image' : 'partner-logo';
   const logoInner = hasImage
     ? `<img src="${esc(p.logo_url)}" alt="${esc(restaurantName)} logo" loading="lazy">`
     : `<span style="font-size:${p.initials && p.initials.length > 1 ? '.95rem' : '1.2rem'}">${esc(p.initials || restaurantName[0])}</span>`;
-  // Wrap the logo in an anchor to the blog post when blog_url is set; else render a div.
   const logoTag = p.blog_url
     ? `<a href="${esc(p.blog_url)}" class="${logoClass}" style="${logoStyle}" aria-label="Read about ${esc(restaurantName)}" title="Read about ${esc(restaurantName)}">${logoInner}</a>`
     : `<div class="${logoClass}" style="${logoStyle}">${logoInner}</div>`;
 
   const linksHTML = [
-    p.website ? `<a href="${esc(p.website)}" target="_blank" rel="noopener" class="partner-link web" aria-label="Website" title="Website">${ICON_GLOBE}</a>` : '',
-    p.instagram ? `<a href="${esc(p.instagram)}" target="_blank" rel="noopener" class="partner-link ig" aria-label="Instagram" title="Instagram">${ICON_INSTAGRAM}</a>` : '',
-    p.googleReviews ? `<a href="${esc(p.googleReviews)}" target="_blank" rel="noopener" class="partner-link reviews" aria-label="Google Reviews" title="Google Reviews">${ICON_STAR}</a>` : ''
+    p.website      ? `<a href="${esc(p.website)}" target="_blank" rel="noopener" class="partner-link web" aria-label="Website" title="Website">${ICON_GLOBE}</a>` : '',
+    p.instagram    ? `<a href="${esc(p.instagram)}" target="_blank" rel="noopener" class="partner-link ig" aria-label="Instagram" title="Instagram">${ICON_INSTAGRAM}</a>` : '',
+    p.googleReviews? `<a href="${esc(p.googleReviews)}" target="_blank" rel="noopener" class="partner-link reviews" aria-label="Google Reviews" title="Google Reviews">${ICON_STAR}</a>` : ''
   ].filter(Boolean).join('');
 
   const dishesHTML = dishes.map(d => `
@@ -356,11 +410,11 @@ function renderPartnerCard(restaurantName, dishes, overrides) {
 }
 
 // ── Render full section ───────────────────────────────────────────────────────
-function renderSection(items, sheetOverrides) {
+function renderSection(items, partners) {
   if (!items.length) return '<div class="state-msg">Menu not set yet.</div>';
   const grouped = groupByRestaurant(items);
   return [...grouped.entries()]
-    .map(([name, dishes]) => renderPartnerCard(name, dishes, sheetOverrides[name]))
+    .map(([name, dishes]) => renderPartnerCard(name, dishes, partners))
     .join('');
 }
 
@@ -374,7 +428,7 @@ function activateSection(section) {
   const body = document.getElementById('menu-body');
   body.innerHTML = renderSection(
     section === 'muny' ? menuData.muny : menuData.artHill,
-    menuData.sheetOverrides
+    menuData.partners
   );
   setTimeout(() => window.scrollTo({ top: document.querySelector('.picker').offsetTop - 12, behavior: 'smooth' }), 50);
 }
@@ -382,9 +436,26 @@ function activateSection(section) {
 // ── Load ──────────────────────────────────────────────────────────────────────
 async function loadMenu() {
   try {
-    const res = await fetch(CSV_URL);
-    if (!res.ok) throw new Error('fetch failed');
-    menuData = buildMenuData(parseCSV(await res.text()));
+    // Today's menu is required
+    const menuRes = await fetch(MENU_CSV);
+    if (!menuRes.ok) throw new Error('menu fetch failed');
+    const menuRows = parseCSV(await menuRes.text());
+
+    // Partners + Menu Items are best-effort; graceful fallback on error
+    let partnersMap = {};
+    let itemsMap = {};
+    const secondary = [];
+    if (PARTNERS_CSV) secondary.push(
+      fetch(PARTNERS_CSV).then(r => r.ok ? r.text() : '').then(t => { if (t) partnersMap = buildPartnersMap(parseCSV(t)); }).catch(() => {})
+    );
+    if (ITEMS_CSV) secondary.push(
+      fetch(ITEMS_CSV).then(r => r.ok ? r.text() : '').then(t => { if (t) itemsMap = buildMenuItemsMap(parseCSV(t)); }).catch(() => {})
+    );
+    if (secondary.length) await Promise.all(secondary);
+
+    menuData = buildMenuData(menuRows, itemsMap);
+    menuData.partners = partnersMap;
+
     const hash = location.hash.replace('#','').toLowerCase();
     activateSection(hash === 'muny' ? 'muny' : 'art-hill');
     if (menuData.returnNote) {
