@@ -117,7 +117,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="/css/styles.css?v=2026-04-25">
+  <link rel="stylesheet" href="/css/styles.css?v=2026-04-25c">
 
   <!-- Perf: warm the connection to Bokun's S3 bucket (used for hero background + photo strip) -->
   <link rel="preconnect" href="https://bokun.s3.amazonaws.com" crossorigin>
@@ -189,6 +189,20 @@
         <p><strong>A Taste of Two Cities</strong> is a 3-hour, 2-mile walking tour led by a St. Louis local — a compulsive historian, deep-rooted neighbor, and the kind of storyteller who makes you want to keep walking long after your feet say otherwise. Along the way, you'll taste a full spread of St. Louis classics from neighborhood mainstays that have been feeding the CWE for decades — enjoyed everywhere from pub tables to park benches. Guests typically leave too full for dinner.</p>
 
         <p>This isn't a canned tour of famous landmarks you could find on any travel blog. This is a walk through a living neighborhood, told honestly — the wealth, the beauty, the self-inflicted wounds, and the remarkable people who stitched it back together.</p>
+
+        <!-- Testimonials — placed early so social proof lands right after the
+             description, before the long detail sections. Reviews carousel
+             data: /data/reviews.json, JS: /js/reviews-carousel.js -->
+        <h3 style="margin-top:2em;">What Recent Guests Are Saying</h3>
+        <div data-reviews-carousel class="testi-carousel--light" aria-label="Recent guest reviews">
+          <!-- Static fallback — replaced by JS once /data/reviews.json loads -->
+          <div class="testi-card">
+            <div class="star-row"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+            <p>Mike is the consummate storyteller. A very balanced view of history. No punches pulled. Every part is human, beautiful and ugly.</p>
+            <div class="testi-card__author">ahunkins · Minneapolis, MN</div>
+            <div class="testi-card__source">Oct 2025 · via TripAdvisor</div>
+          </div>
+        </div>
 
         <h3>What You'll See & Do</h3>
         <p>Your 2-mile route winds through the heart of the Central West End, beginning at Dressel's Pub, near Euclid and McPherson. Along the way, expect:</p>
@@ -344,19 +358,6 @@
             </div>
           </div>
 
-        </div>
-
-        <!-- Testimonials -->
-        <h3 style="margin-top:2.5em;">What Recent Guests Are Saying</h3>
-        <!-- Reviews carousel — data: /data/reviews.json, JS: /js/reviews-carousel.js -->
-        <div data-reviews-carousel class="testi-carousel--light" aria-label="Recent guest reviews">
-          <!-- Static fallback — replaced by JS once /data/reviews.json loads -->
-          <div class="testi-card">
-            <div class="star-row"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-            <p>Mike is the consummate storyteller. A very balanced view of history. No punches pulled. Every part is human, beautiful and ugly.</p>
-            <div class="testi-card__author">ahunkins · Minneapolis, MN</div>
-            <div class="testi-card__source">Oct 2025 · via TripAdvisor</div>
-          </div>
         </div>
 
       </main>
