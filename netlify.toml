@@ -14,7 +14,7 @@
 # ---------------------------------------------------------------------------
 # Legacy URLs from the pre-rebuild site (still indexed by Google, now 404ing).
 # Each 301 reclaims the ranking authority by sending it to today's equivalent.
-# Added 2026-04-22 as part of SEO audit quick wins.
+# Initial batch added 2026-04-22; SEO sprint additions 2026-04-26 below.
 # ---------------------------------------------------------------------------
 
 [[redirects]]
@@ -47,9 +47,38 @@
   to = "/blog/omg-in-the-cwe/"
   status = 301
 
+# 2026-04-26 SEO sprint additions: GSC showed these old paths still
+# indexed and bleeding impressions into 404s. Verified targets via
+# racon.tours archive.
+
+[[redirects]]
+  from = "/the-perfect-st-louis-food-tour"
+  to = "/tour/"
+  status = 301
+
+# Specific product slugs from the old /tours/iconicstl/ taxonomy
+# (715 + 112 impressions over last 90 days). MUST come before the
+# /tours/* catch-all below.
+
+[[redirects]]
+  from = "/tours/iconicstl/iconic-stl-flavors-central-west-end-food-history-walking-tour"
+  to = "/tour/"
+  status = 301
+
+[[redirects]]
+  from = "/tours/iconicstl/omg-in-the-cwe-best-of-the-central-west-end-food-history-tour"
+  to = "/blog/omg-in-the-cwe/"
+  status = 301
+
+# Catch-all for any other /tours/<deep-path> still floating in the index.
+[[redirects]]
+  from = "/tours/*"
+  to = "/tour/"
+  status = 301
+
 # ---------------------------------------------------------------------------
 # Forest Park Picnics lives at its own domain now.
-# force=true is required because /picnics/*/index.html still exist in the repo.
+# force=true is required where /picnics/*/index.html still exist in the repo.
 # Specific product rules MUST come before the catch-all.
 # ---------------------------------------------------------------------------
 
@@ -100,6 +129,21 @@
   to = "https://forestparkpicnics.com/"
   status = 301
   force = true
+
+# 2026-04-26 SEO sprint additions: legacy partner landing pages now
+# resolve to the FPP partners page (mass-market partner channel lives
+# at FPP per current marketing positioning). No file conflicts so no
+# force needed.
+
+[[redirects]]
+  from = "/yeschef"
+  to = "https://forestparkpicnics.com/partners"
+  status = 301
+
+[[redirects]]
+  from = "/partner"
+  to = "https://forestparkpicnics.com/partners"
+  status = 301
 
 [[headers]]
   for = "/*"
