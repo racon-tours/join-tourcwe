@@ -120,13 +120,13 @@
       class: 'testi-carousel__arrow testi-carousel__arrow--prev',
       'aria-label': 'Previous review'
     });
-    prev.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    prev.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     var next = el('button', {
       type: 'button',
       class: 'testi-carousel__arrow testi-carousel__arrow--next',
       'aria-label': 'Next review'
     });
-    next.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    next.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
     // Controls row: [prev] [dots] [next] sit BELOW the card on a single line.
     // Keeps arrows clear of the review text on every screen size.

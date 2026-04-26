@@ -1076,29 +1076,33 @@ textarea:focus-visible,
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  margin-top: 22px;
+  gap: 22px;
+  margin-top: 24px;
 }
 .testi-carousel__arrow {
   flex: 0 0 auto;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.28);
   background: rgba(255,255,255,.08);
-  color: rgba(255,255,255,.85);
+  color: rgba(255,255,255,.9);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 .testi-carousel__arrow:hover,
 .testi-carousel__arrow:focus-visible {
   background: rgba(255,255,255,.18);
-  border-color: rgba(255,255,255,.4);
+  border-color: rgba(255,255,255,.5);
   color: var(--gold);
   outline: none;
+  transform: translateY(-1px);
+}
+.testi-carousel__arrow:active {
+  transform: translateY(0);
 }
 
 /* Dots */
@@ -1127,18 +1131,20 @@ textarea:focus-visible,
   outline-offset: 2px;
 }
 
-/* Light-background variant (tour page) */
+/* Light-background variant (tour page) — arrows get a real shadow so
+   they feel anchored against the cream backdrop. */
 .testi-carousel--light .testi-carousel__arrow {
   background: var(--white);
   border-color: var(--cream-dark);
   color: var(--blue);
-  box-shadow: var(--shadow);
+  box-shadow: 0 2px 10px rgba(28,28,28,.10);
 }
 .testi-carousel--light .testi-carousel__arrow:hover,
 .testi-carousel--light .testi-carousel__arrow:focus-visible {
   color: var(--blue-dark);
   border-color: var(--blue);
   background: var(--white);
+  box-shadow: 0 4px 14px rgba(28,28,28,.16);
 }
 
 /* Light-background variant: dots */
@@ -1151,14 +1157,29 @@ textarea:focus-visible,
 }
 
 /* Card chrome inside the carousel — overrides the .testi-card defaults
-   so the single card feels prominent vs. the old 3-up grid */
+   so the single card feels prominent vs. the old 3-up grid. Content is
+   center-aligned (stars, quote, byline) so the card reads as a quote
+   block rather than body copy — important on the tour page where
+   surrounding paragraphs are left-aligned. */
 .testi-carousel .testi-card {
-  padding: 40px 36px 32px;
+  padding: 56px 36px 32px;
   min-height: 220px;
+  text-align: center;
+}
+.testi-carousel .testi-card .star-row {
+  justify-content: center;
+}
+.testi-carousel .testi-card::before {
+  /* Center the decorative quote mark above the stars instead of
+     anchoring it to the top-left corner. */
+  left: 50%;
+  top: 14px;
+  transform: translateX(-50%);
 }
 .testi-carousel .testi-card p {
   font-size: 1.08rem;
   line-height: 1.65;
+  padding-top: 0; /* override the global .testi-card p { padding-top: 28px } */
 }
 .testi-carousel--light .testi-card {
   background: var(--white);
@@ -1170,13 +1191,13 @@ textarea:focus-visible,
 .testi-carousel--light .testi-card__source { color: #888; }
 .testi-carousel--light .star-row span { color: #c9a227; }
 
-/* Mobile: tighter card padding */
+/* Mobile: tighter card padding, slightly smaller arrows */
 @media (max-width: 768px) {
   .testi-carousel { max-width: 100%; }
   .testi-carousel .testi-card {
-    padding: 36px 22px 28px;
+    padding: 50px 22px 28px;
   }
   .testi-carousel .testi-card p { font-size: .98rem; }
-  .testi-carousel__controls { gap: 14px; }
-  .testi-carousel__arrow { width: 36px; height: 36px; }
+  .testi-carousel__controls { gap: 16px; }
+  .testi-carousel__arrow { width: 40px; height: 40px; }
 }
