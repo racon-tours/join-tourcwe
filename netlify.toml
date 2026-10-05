@@ -91,86 +91,81 @@
   status = 301
 
 # ---------------------------------------------------------------------------
-# Forest Park Picnics lives at its own domain now.
-# force=true is required where /picnics/*/index.html still exist in the repo.
-# Specific product rules MUST come before the catch-all.
+# 2026-10-05 — Forest Park Picnics wound down; all old picnic, menu and
+# partner URLs now land on the food tour.
 # ---------------------------------------------------------------------------
 
 [[redirects]]
   from = "/picnics/art-hill"
-  to = "https://forestparkpicnics.com/art-hill-picnic-st-louis"
+  to = "/tour/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/picnics/art-hill/*"
-  to = "https://forestparkpicnics.com/art-hill-picnic-st-louis"
+  to = "/tour/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/picnics/muny"
-  to = "https://forestparkpicnics.com/pagoda-lake-picnic-st-louis"
+  to = "/tour/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/picnics/muny/*"
-  to = "https://forestparkpicnics.com/pagoda-lake-picnic-st-louis"
+  to = "/tour/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/picnic"
-  to = "https://forestparkpicnics.com/"
+  to = "/tour/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/picnic/*"
-  to = "https://forestparkpicnics.com/"
+  to = "/tour/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/picnics"
-  to = "https://forestparkpicnics.com/"
+  to = "/tour/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/picnics/*"
-  to = "https://forestparkpicnics.com/"
+  to = "/tour/"
   status = 301
   force = true
 
-# 2026-04-26 SEO sprint additions: legacy partner landing pages now
-# resolve to the FPP partners page (mass-market partner channel lives
-# at FPP per current marketing positioning). No file conflicts so no
-# force needed.
+# Legacy partner landing pages (2026-04-26) — now the food tour.
 
 [[redirects]]
   from = "/yeschef"
-  to = "https://forestparkpicnics.com/partners"
+  to = "/tour/"
   status = 301
 
 [[redirects]]
   from = "/partner"
-  to = "https://forestparkpicnics.com/partners"
+  to = "/tour/"
   status = 301
 
 
-# 2026-05-08 — /menu moves to FPP. /menu/index.html still in the
-# repo, so force=true is required.
+# Old menu URL — now the food section of the tour page.
 [[redirects]]
   from = "/menu"
-  to = "https://forestparkpicnics.com/menu/"
+  to = "/tour/#food"
   status = 301
   force = true
 
 [[redirects]]
   from = "/menu/*"
-  to = "https://forestparkpicnics.com/menu/"
+  to = "/tour/#food"
   status = 301
   force = true
 
