@@ -65,8 +65,8 @@
     <div class="hero__overlay"></div>
     <div class="hero__content container">
       <p class="hero__eyebrow">Private Tours &middot; Central West End</p>
-      <h1>Eat Like a <span style="white-space:nowrap">Lou-natic,</span> <em>on your schedule</em></h1>
-      <p class="hero__lead">Our public tour runs Thursday through Saturday at 2pm. Can&rsquo;t make that work? We&rsquo;ll run our acclaimed food tour just for your group &mdash; any day, any time that works for you.</p>
+      <h1>Eat Like a <span style="white-space:nowrap">Lou-natic,</span> <em>just for your group</em></h1>
+      <p class="hero__lead">Our public tour runs Thursday through Saturday at 2pm. Want the tour to yourselves, or need a different day? Suggest a few dates and times and we&rsquo;ll find one our restaurant partners can host.</p>
     </div>
   </section>
   <style>
@@ -77,17 +77,31 @@
     .pt-card { background: #1c1c1c; color: #efebce; border-left: 4px solid #d6ce93; border-radius: 4px; padding: 1.5rem 1.6rem; }
     .pt-card h3 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.45rem; font-weight: 500; margin: 0 0 .5rem; color: #efebce; }
     .pt-card p { margin: 0; line-height: 1.55; opacity: .95; }
-    .pt-list { margin: 1.25rem 0 0; padding-left: 1.2rem; line-height: 1.8; }
+    .pt-price { margin: 2.5rem 0 0; padding: 1.75rem; background: #fff; border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,.06); text-align: center; }
+    .pt-price__big { font-family: "Cormorant Garamond", Georgia, serif; font-size: 2.6rem; font-weight: 700; color: #1c1c1c; line-height: 1.1; }
+    .pt-price__big small { font-size: 1.1rem; font-weight: 500; color: #607466; }
+    .pt-price p { margin: .6rem 0 0; color: #444; line-height: 1.6; }
     .pt-proof { margin: 2.5rem 0 0; padding: 1.5rem 1.75rem; border-top: 1px solid rgba(98,131,149,.3); border-bottom: 1px solid rgba(98,131,149,.3); text-align: center; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.35rem; font-style: italic; color: #628395; }
     .pt-request { background: #efebce; border-radius: 6px; padding: 2rem 1.75rem; margin-top: 1rem; }
     .pt-request h2 { margin-top: 0; }
-    .pt-request ol { padding-left: 1.2rem; line-height: 1.8; margin: 1rem 0 1.5rem; }
-    .pt-actions { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
-    .pt-actions .pt-phone { color: #1c1c1c; font-weight: 700; }
+    .pt-form { display: grid; gap: 1.1rem; margin-top: 1.25rem; }
+    .pt-form label, .pt-form legend { display: block; font-weight: 700; font-size: .95rem; color: #1c1c1c; margin-bottom: .35rem; }
+    .pt-form input, .pt-form select, .pt-form textarea { width: 100%; box-sizing: border-box; font: inherit; font-size: 16px; padding: .7rem .8rem; border: 1px solid #b9b49a; border-radius: 4px; background: #fff; color: #1c1c1c; }
+    .pt-form textarea { min-height: 110px; resize: vertical; }
+    .pt-form fieldset { border: 0; padding: 0; margin: 0; }
+    .pt-form .pt-hint { font-size: .88rem; color: #607466; margin: 0 0 .6rem; font-weight: 400; }
+    .pt-slot { display: grid; grid-template-columns: 1.3fr 1fr; gap: .6rem; margin-bottom: .6rem; }
+    .pt-slot span { grid-column: 1 / -1; font-size: .85rem; font-weight: 600; color: #628395; margin-bottom: -.3rem; }
+    .pt-total { font-weight: 700; color: #1c1c1c; margin: .45rem 0 0; font-size: .95rem; }
+    .pt-two { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .pt-hp { position: absolute; left: -9999px; }
+    .pt-form button { justify-self: start; cursor: pointer; }
     .pt-fine { font-size: .92rem; color: #607466; margin-top: 1.25rem; line-height: 1.6; }
     @media (max-width: 640px) {
       .pt-request { padding: 1.5rem 1.25rem; }
       .pt-proof { font-size: 1.15rem; padding: 1.25rem 0; }
+      .pt-two { grid-template-columns: 1fr; }
+      .pt-form button { justify-self: stretch; }
     }
   </style>
   <section class="section" aria-label="About private tours">
@@ -97,50 +111,101 @@
 
       <div class="pt-grid">
         <div class="pt-card">
-          <h3>Your day, your time</h3>
-          <p>Mornings, weekdays, Sundays &mdash; tell us when you want to go and we&rsquo;ll work with our restaurant partners to make it happen.</p>
+          <h3>Off the public schedule</h3>
+          <p>Suggest dates and times that suit your group and we&rsquo;ll confirm the one our restaurant partners can host.</p>
         </div>
         <div class="pt-card">
           <h3>Only your group</h3>
           <p>No strangers at the table. Inside jokes welcome. The pace and the conversation are built around the people you bring.</p>
         </div>
-        <div class="pt-card">
-          <h3>Room to celebrate</h3>
-          <p>Birthdays, anniversaries, proposals, retirements &mdash; let us know what you&rsquo;re marking and we&rsquo;ll help make the afternoon feel like an occasion.</p>
-        </div>
       </div>
 
-      <h2 style="margin-top:2.5rem;">Who books it</h2>
-      <ul class="pt-list">
-        <li>Corporate outings, team-building and client entertaining</li>
-        <li>Birthday, bachelorette and bachelor parties</li>
-        <li>Family reunions and visiting relatives</li>
-        <li>Convention, wedding and conference groups looking for a real taste of St. Louis</li>
-        <li>Clubs, alumni groups and anyone who&rsquo;d rather not share the guide</li>
-      </ul>
+      <div class="pt-price">
+        <div class="pt-price__big">$995 <small>for up to 10 guests</small></div>
+        <p>Add guests at $99.50 each, up to 16 total. All food and drinks on the tour included.</p>
+      </div>
 
-      <p class="pt-proof">Rated 4.8 out of 5 by guests and featured in <em style="white-space:nowrap">St. Louis Magazine</em>.</p>
+      <p class="pt-proof">Five stars on Google, GetYourGuide and Airbnb Experiences &mdash; and featured in <em style="white-space:nowrap">St. Louis Magazine</em>.</p>
     </div>
   </section>
   <section class="section" id="request" aria-label="Request a private tour">
     <div class="container container--narrow">
       <div class="pt-request">
-        <h2>Request a private date</h2>
-        <p>Send us a note with:</p>
-        <ol>
-          <li>Your preferred date and start time (a backup helps)</li>
-          <li>How many guests</li>
-          <li>What you&rsquo;re celebrating, if anything</li>
-          <li>Any dietary needs in the group</li>
-        </ol>
-        <div class="pt-actions">
-          <a class="btn btn-gold" href="mailto:info@tourcwe.com?subject=Private%20tour%20request&amp;body=Preferred%20date%20and%20time%3A%0AGroup%20size%3A%0AOccasion%3A%0ADietary%20needs%3A%0A">Email info@tourcwe.com</a>
-          <a class="pt-phone" href="tel:+13143123549">or call 314.312.3549</a>
-        </div>
-        <p class="pt-fine">We&rsquo;ll reply with availability and a quote. The menu is set by our restaurant partners, so we can&rsquo;t guarantee gluten-free, vegan or allergy-safe options, but a pork substitute is available. Prefer to join a public tour? <a href="/tour/#book">See Thursday&ndash;Saturday dates</a>.</p>
+        <h2>Request a private tour</h2>
+        <p>Tell us about your group and suggest three dates and start times. We&rsquo;ll reply to confirm one.</p>
+        <form class="pt-form" name="private-tour" method="POST" action="/private-tours/thanks/" data-netlify="true" netlify-honeypot="company">
+          <input type="hidden" name="form-name" value="private-tour">
+          <p class="pt-hp"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off"></label></p>
+
+          <div>
+            <label for="pt-guests">Number of guests</label>
+            <select id="pt-guests" name="guests" required>
+              <option value="">Choose&hellip;</option>
+              <option value="Up to 10 ($995)">Up to 10 guests</option>
+              <option value="11 ($1,094.50)">11 guests</option>
+              <option value="12 ($1,194)">12 guests</option>
+              <option value="13 ($1,293.50)">13 guests</option>
+              <option value="14 ($1,393)">14 guests</option>
+              <option value="15 ($1,492.50)">15 guests</option>
+              <option value="16 ($1,592)">16 guests</option>
+            </select>
+            <p class="pt-total" id="pt-total" aria-live="polite"></p>
+          </div>
+
+          <fieldset>
+            <legend>Three dates and start times that work for you</legend>
+            <p class="pt-hint">Give us options &mdash; we&rsquo;ll confirm the one that works.</p>
+            <div class="pt-slot"><span>First choice</span>
+              <input type="date" name="date-1" aria-label="First choice date" required>
+              <input type="time" name="time-1" aria-label="First choice start time" required>
+            </div>
+            <div class="pt-slot"><span>Second choice</span>
+              <input type="date" name="date-2" aria-label="Second choice date" required>
+              <input type="time" name="time-2" aria-label="Second choice start time" required>
+            </div>
+            <div class="pt-slot"><span>Third choice</span>
+              <input type="date" name="date-3" aria-label="Third choice date" required>
+              <input type="time" name="time-3" aria-label="Third choice start time" required>
+            </div>
+          </fieldset>
+
+          <div>
+            <label for="pt-event">Special occasion?</label>
+            <select id="pt-event" name="occasion">
+              <option value="None">No, just for fun</option>
+              <option>Birthday</option>
+              <option>Anniversary</option>
+              <option>Bachelorette or bachelor party</option>
+              <option>Corporate or team outing</option>
+              <option>Family reunion</option>
+              <option>Wedding or rehearsal weekend</option>
+              <option>Other (tell us below)</option>
+            </select>
+          </div>
+
+          <div class="pt-two">
+            <div><label for="pt-name">Name</label><input id="pt-name" name="name" autocomplete="name" required></div>
+            <div><label for="pt-phone">Phone</label><input id="pt-phone" name="phone" type="tel" autocomplete="tel" required></div>
+          </div>
+          <div><label for="pt-email">Email</label><input id="pt-email" name="email" type="email" autocomplete="email" required></div>
+          <div><label for="pt-notes">Additional information</label><textarea id="pt-notes" name="notes" placeholder="Anything we should know about your group"></textarea></div>
+
+          <button type="submit" class="btn btn-gold">Send request</button>
+        </form>
+        <p class="pt-fine">Prefer to talk it through? Call <a href="tel:+13143123549">314.312.3549</a>. Just want to join a public tour? <a href="/tour/#book">See Thursday&ndash;Saturday dates</a>.</p>
       </div>
     </div>
   </section>
+  <script>
+    (function(){
+      var s=document.getElementById('pt-guests'), out=document.getElementById('pt-total');
+      if(!s||!out) return;
+      s.addEventListener('change',function(){
+        var m=s.value.match(/\(([^)]+)\)/);
+        out.textContent = m ? 'Tour total: ' + m[1] : '';
+      });
+    })();
+  </script>
 </main>
 <footer class="footer" aria-label="Site footer">
   <div class="container">
