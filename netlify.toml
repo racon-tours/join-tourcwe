@@ -26,6 +26,27 @@
   status = 301
 
 # ---------------------------------------------------------------------------
+# Printed QR codes. Each sign's QR points at a short /signX path so the
+# destination or tracking tags can change later without reprinting.
+# 302 (temporary) so phones never cache the old target.
+# Shows in Google Analytics as source "sandwich-board", medium "qr",
+# campaign = the sign's name. Add /signB, /signC ... the same way.
+# signA: sidewalk sandwich board (first placed outside Kingside Diner, Oct 2026)
+# ---------------------------------------------------------------------------
+
+[[redirects]]
+  from = "/signA"
+  to = "/?utm_source=sandwich-board&utm_medium=qr&utm_campaign=signA"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/signa"
+  to = "/?utm_source=sandwich-board&utm_medium=qr&utm_campaign=signA"
+  status = 302
+  force = true
+
+# ---------------------------------------------------------------------------
 # Legacy URLs from the pre-rebuild site (still indexed by Google, now 404ing).
 # Each 301 reclaims the ranking authority by sending it to today's equivalent.
 # Initial batch added 2026-04-22; SEO sprint additions 2026-04-26 below.
