@@ -60,8 +60,8 @@
     },
     "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "40",
+    "ratingValue": "4.96",
+    "reviewCount": "125",
     "bestRating": "5"
     },
     "priceRange": "$$",
@@ -76,7 +76,8 @@
     "sameAs": [
       "https://www.viator.com/tours/St-Louis/Hidden-History-and-Local-Flavors-of-the-Central-West-End/d24780-5551344P1",
       "https://www.getyourguide.com/st-louis-l1443/-t947537/",
-      "https://www.tripadvisor.com/Attraction_Review-g44881-d32830452-Reviews-TourCWE-Saint_Louis_Missouri.html"
+      "https://www.tripadvisor.com/Attraction_Review-g44881-d32830452-Reviews-TourCWE-Saint_Louis_Missouri.html",
+      "https://www.airbnb.com/experiences/7168961"
     ]
   }
   </script>
@@ -86,6 +87,19 @@
   <!-- Perf: warm the connection to Bokun's S3 bucket (used for content card images) -->
   <link rel="preconnect" href="https://bokun.s3.amazonaws.com" crossorigin>
   <link rel="dns-prefetch" href="https://bokun.s3.amazonaws.com">
+<style>
+/* Ratings-across-platforms card */
+.ratings-card{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:760px;margin:1.4em auto 0}
+.ratings-card__tile{background:rgba(255,255,255,.06);border:1px solid rgba(214,206,147,.35);border-radius:10px;padding:14px 10px;text-align:center}
+.ratings-card__score{font-family:var(--font-display);font-size:2rem;font-weight:700;line-height:1;color:var(--gold)}
+.ratings-card__stars{color:var(--gold);letter-spacing:2px;font-size:.85rem;margin:4px 0}
+.ratings-card__name{font-weight:700;font-size:.9rem}
+.ratings-card__count{font-size:.78rem;opacity:.7}
+.ratings-card--light .ratings-card__tile{background:var(--white);border-color:var(--cream-dark);box-shadow:var(--shadow)}
+.ratings-card--light .ratings-card__score,.ratings-card--light .ratings-card__stars{color:#a89a3c}
+.ratings-card--light{margin:0 0 2em;max-width:none}
+@media (max-width:600px){.ratings-card{grid-template-columns:repeat(2,1fr)}}
+</style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -139,7 +153,7 @@
     </div>
     <div class="trust-item">
       <span class="trust-item__icon">⭐</span>
-      <span><strong>4.8 Stars</strong> · 40+ Reviews</span>
+      <span><strong>5 Stars</strong> on Google · 125+ Reviews</span>
     </div>
     <div class="trust-item">
       <span class="trust-item__icon">📅</span>
@@ -230,7 +244,13 @@
       <span class="eyebrow">What Guests Are Saying</span>
       <h2 id="testimonials-heading">Don't Take Our Word for It</h2>
       <div class="divider"></div>
-      <p style="color:rgba(255,255,255,.7)">4.8 stars · 40+ verified reviews · Badge of Excellence · 95% recommend.</p>
+      <p style="color:rgba(255,255,255,.7)">125+ reviews across four platforms · Badge of Excellence on Viator.</p>
+<div class="ratings-card" role="list" aria-label="TourCWE ratings by platform">
+  <div class="ratings-card__tile" role="listitem"><div class="ratings-card__score">5.0</div><div class="ratings-card__stars" aria-hidden="true">★★★★★</div><div class="ratings-card__name">Google</div><div class="ratings-card__count">53 reviews</div></div>
+  <div class="ratings-card__tile" role="listitem"><div class="ratings-card__score">4.9</div><div class="ratings-card__stars" aria-hidden="true">★★★★★</div><div class="ratings-card__name">TripAdvisor</div><div class="ratings-card__count">52 reviews</div></div>
+  <div class="ratings-card__tile" role="listitem"><div class="ratings-card__score">5.0</div><div class="ratings-card__stars" aria-hidden="true">★★★★★</div><div class="ratings-card__name">GetYourGuide</div><div class="ratings-card__count">14 reviews</div></div>
+  <div class="ratings-card__tile" role="listitem"><div class="ratings-card__score">5.0</div><div class="ratings-card__stars" aria-hidden="true">★★★★★</div><div class="ratings-card__name">Airbnb</div><div class="ratings-card__count">6 reviews</div></div>
+</div>
     </div>
     <div data-reviews-carousel aria-label="Guest reviews">
       <!-- Static fallback — replaced by JS once /data/reviews.json loads -->
