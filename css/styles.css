@@ -1201,3 +1201,34 @@ textarea:focus-visible,
   .testi-carousel__controls { gap: 16px; }
   .testi-carousel__arrow { width: 40px; height: 40px; }
 }
+
+/* ---- Food & landmark stickers (illustrations from the tour deck) ---- */
+.has-stickers { position: relative; }
+.sticker {
+  position: absolute; width: 132px; height: auto; pointer-events: none; z-index: 2;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.18));
+}
+.sticker--tl { top: 28px;  left: 4%;  transform: rotate(-9deg); }
+.sticker--tr { top: 36px;  right: 4%; transform: rotate(8deg); }
+.sticker--bl { bottom: 26px; left: 5%; transform: rotate(-6deg); width: 104px; }
+.sticker--br { bottom: 30px; right: 5%; transform: rotate(7deg); width: 110px; }
+.sticker-float {
+  float: right; width: 128px; height: auto; margin: 0 0 .6em 1.2em; shape-outside: margin-box;
+  filter: drop-shadow(0 5px 8px rgba(0,0,0,.16)); transform: rotate(6deg);
+}
+.sticker-float--l { float: left; margin: 0 1.2em .6em 0; transform: rotate(-6deg); }
+.card__img--sticker { background: #F3EED8; display: flex; align-items: center; justify-content: center; }
+.card__img--sticker img { object-fit: contain !important; padding: 14px 18px; }
+.about-photo { margin: 0 0 2em; }
+.about-photo img { width: 100%; height: auto; border-radius: 8px; display: block; }
+.about-photo figcaption { font-size: .85rem; color: var(--sage, #6b7a70); margin-top: .5em; text-align: center; font-style: italic; }
+@media (max-width: 960px) {
+  .sticker { width: 92px; }
+  .sticker--tl { top: 12px; left: 2%; } .sticker--tr { top: 16px; right: 2%; }
+  .sticker--bl, .sticker--br { width: 78px; }
+}
+@media (max-width: 600px) {
+  .sticker { width: 68px; }
+  .sticker--bl, .sticker--br { display: none; }
+  .sticker-float { width: 92px; }
+}

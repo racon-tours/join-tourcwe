@@ -82,7 +82,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="/css/styles.css?v=2026-04-25d">
+  <link rel="stylesheet" href="/css/styles.css?v=2026-10-29a">
 
   <!-- Perf: warm the connection to Bokun's S3 bucket (used for content card images) -->
   <link rel="preconnect" href="https://bokun.s3.amazonaws.com" crossorigin>
@@ -169,7 +169,9 @@
 </div>
 
 <!-- ============ EXPERIENCES ============ -->
-<section class="section bg-cream" aria-labelledby="experiences-heading">
+<section class="section bg-cream has-stickers" aria-labelledby="experiences-heading">
+  <img class="sticker sticker--tl" src="/images/stickers/toasted-ravioli.webp" alt="" aria-hidden="true" loading="lazy">
+  <img class="sticker sticker--tr" src="/images/stickers/gooey-butter-cake.webp" alt="" aria-hidden="true" loading="lazy">
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">Eat Like a Lou-natic</span>
@@ -183,9 +185,9 @@
       <!-- The Food -->
       <article class="card">
         <div class="card__img">
-          <img src="/images/flame-tease.jpg"
-               alt="A chef tilts a flaming pan during the food tour, flame rising tall above the pan"
-               width="720" height="480" loading="lazy">
+          <img src="/images/flame-finale.jpg"
+               alt="A chef lifts a flaming pan at the tour's dessert finale while a guest films it on her phone"
+               width="1050" height="1400" loading="lazy" style="object-position:center 30%">
           <span class="card__badge">The Food</span>
         </div>
         <div class="card__body">
@@ -199,10 +201,10 @@
 
       <!-- The Story -->
       <article class="card">
-        <div class="card__img">
-          <img src="/images/spirit-of-st-louis.jpg"
-               alt="The Spirit of St. Louis aircraft fuselage with the original lettering, against a pale sky"
-               width="1440" height="960" loading="lazy">
+        <div class="card__img card__img--sticker">
+          <img src="/images/stickers/spirit-of-st-louis.webp"
+               alt="Illustration of the Spirit of St. Louis plane flying through the clouds"
+               width="600" height="491" loading="lazy">
           <span class="card__badge">The Story</span>
         </div>
         <div class="card__body">
@@ -239,7 +241,9 @@
 <!-- Reviews carousel: data lives in /data/reviews.json,
      JS in /js/reviews-carousel.js. Static fallback card below renders
      the first review pre-JS so the section never appears empty. -->
-<section class="testimonials" aria-labelledby="testimonials-heading">
+<section class="testimonials has-stickers" aria-labelledby="testimonials-heading">
+  <img class="sticker sticker--bl" src="/images/stickers/chess-king.webp" alt="" aria-hidden="true" loading="lazy">
+  <img class="sticker sticker--br" src="/images/stickers/fleur-de-lis.webp" alt="" aria-hidden="true" loading="lazy">
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">What Guests Are Saying</span>
