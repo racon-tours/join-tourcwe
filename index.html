@@ -82,7 +82,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="/css/styles.css?v=2026-10-29a">
+  <link rel="stylesheet" href="/css/styles.css?v=2026-11-03a">
 
   <!-- Perf: warm the connection to Bokun's S3 bucket (used for content card images) -->
   <link rel="preconnect" href="https://bokun.s3.amazonaws.com" crossorigin>
@@ -131,7 +131,14 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero" aria-label="Hero">
-  <div class="hero__bg" style="background-image:url('/images/maryland-plaza-lamp-hotel.jpg')" role="img" aria-label="Central West End streetscape, St. Louis"></div>
+  <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="/images/hero-video-poster.jpg" aria-label="Tour highlights: Cathedral Basilica, Gilded Age streetlamps, tour tastings and a guide with guests in the Central West End">
+    <source src="/video/hero-tourcwe-mobile.mp4" type="video/mp4" media="(max-width: 767px)">
+    <source src="/video/hero-tourcwe.mp4" type="video/mp4">
+  </video>
+  <script>
+    (function(){var v=document.currentScript.previousElementSibling;
+      if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();}})();
+  </script>
   <div class="hero__overlay"></div>
   <div class="container">
     <div class="hero__content">
