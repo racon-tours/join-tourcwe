@@ -47,6 +47,38 @@
   force = true
 
 # ---------------------------------------------------------------------------
+# Social profile links (link-in-bio). Short, clean URL on each profile;
+# change the destination or tags here without touching the profiles.
+# 302 so browsers never cache an old target.
+# Shows in Google Analytics as source = platform, medium "social",
+# campaign "bio". Added 2026-11-13.
+# ---------------------------------------------------------------------------
+
+[[redirects]]
+  from = "/ig"
+  to = "/?utm_source=instagram&utm_medium=social&utm_campaign=bio"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/fb"
+  to = "/?utm_source=facebook&utm_medium=social&utm_campaign=bio"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/tt"
+  to = "/?utm_source=tiktok&utm_medium=social&utm_campaign=bio"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/yt"
+  to = "/?utm_source=youtube&utm_medium=social&utm_campaign=bio"
+  status = 302
+  force = true
+
+# ---------------------------------------------------------------------------
 # Legacy URLs from the pre-rebuild site (still indexed by Google, now 404ing).
 # Each 301 reclaims the ranking authority by sending it to today's equivalent.
 # Initial batch added 2026-04-22; SEO sprint additions 2026-04-26 below.
